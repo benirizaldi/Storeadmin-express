@@ -1,90 +1,90 @@
-const Category = require('./model');
+const Voucher = require('./model');
 module.exports = {
     index: async (req, res) => {
         try {
             const alertMessage = req.flash('alertMessage');
             const alertStatus = req.flash('alertStatus');
             const alert = { message: alertMessage, status: alertStatus }
-            const category = await Category.find();
-            res.render('admin/category/view_category', {
+            const voucher = await Voucher.find();
+            res.render('admin/voucher/view_index', {
                 layout: 'partials/layout',
-                category,
+                voucher,
                 alert
             });
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/category');
+            res.redirect('/voucher');
         }
     },
     create: async (req, res) => {
         try {
-            res.render('admin/category/create', {
+            res.render('admin/voucher/create', {
                 layout: 'partials/layout',
             });
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/category');
+            res.redirect('/voucher');
         }
     },
     store: async (req, res) => {
         try {
-            const { name } = req.body;
-            const category = await Category({ name });
-            await category.save();
-            req.flash('alertMessage', "Successfully add category");
+            const { coinQuantity, coinName, price } = req.body;
+            const voucher = await Voucher({ coinQuantity, coinName, price });
+            await voucher.save();
+            req.flash('alertMessage', "Successfully add Voucher");
             req.flash('alertStatus', "success");
-            res.redirect('/category');
+            res.redirect('/voucher');
 
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/category');
+            res.redirect('/voucher');
         }
     },
     edit: async (req, res) => {
         try {
             const { id } = req.params;
-            const category = await Category.findOne({ _id: id });
-            res.render('admin/category/edit', {
+            const voucher = await Voucher.findOne({ _id: id });
+            res.render('admin/voucher/edit', {
                 layout: 'partials/layout',
-                category
+                voucher
             })
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/category');
+            res.redirect('/voucher');
         }
     },
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            const { name } = req.body;
+            const { coinQuantity, coinName, price } = req.body;
 
             // console.log(id)
-            await Category.findOneAndUpdate({ _id: id }, { name });
-            req.flash('alertMessage', "Successfully update category");
+            await Voucher.findOneAndUpdate({ _id: id }, { coinQuantity, coinName, price });
+            req.flash('alertMessage', "Successfully update voucher");
             req.flash('alertStatus', "success");
-            res.redirect('/category');
+            res.redirect('/voucher');
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/category');
+            res.redirect('/voucher');
 
         }
     },
     destroy: async (req, res) => {
         try {
             const { id } = req.params;
-            await Category.findOneAndDelete({ _id: id });
-            req.flash('alertMessage', "Successfully delete category");
+            await Voucher.findOneAndDelete({ _id: id });
+            req.flash('alertMessage', "Successfully remove voucher");
             req.flash('alertStatus', "success");
-            res.redirect('/category');
+            res.redirect('/voucher');
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/category');
+            res.redirect('/voucher');
 
         }
     },
