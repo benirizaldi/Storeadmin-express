@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Nominal</h1>
+            <h1>Bank</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">nominal</li>
+              <li class="breadcrumb-item active">bank</li>
             </ol>
           </div>
         </div>
@@ -23,28 +23,37 @@
           <div class="col-12">
             <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Nominal Form</h3>
+                  <h3 class="card-title">Bank Form</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="/nominal/create" method="post">
+                <form action="/bank/edit/<%= bank._id %>?_method=PUT" method="post">
                   <div class="card-body">
                     <div class="form-group">
                       <label>Coin Name</label>
                       <select class="form-control select2" style="width: 100%;" name="coinName">
                         <option selected="selected">Pilih - Koin</option>
-                        <option value="Gold">Gold</option>
-                        <option value="Diamond">Diamond</option>
-                        <option value="Jewel">Jewel</option>
+                        <option value="Gold" <% if (bank.coinName=="Gold") { %>
+                         selected
+                        <% } %>
+                        >Gold</option>
+                        <option value="Diamond" <% if (bank.coinName=="Diamond") { %>
+                          selected
+                         <% } %>
+                         >Diamond</option>
+                        <option value="Jewel" <% if (bank.coinName=="Jewel") { %>
+                          selected
+                         <% } %>
+                         >Jewel</option>
                       </select>
                     </div>
                     <div class="form-group">
                       <label for="coinQuantity">Coin Quantity</label>
-                      <input type="number" class="form-control" id="coinQuantity" name="coinQuantity" placeholder="Enter nominal name">
+                      <input type="number" value="<%= bank.coinQuantity %>" class="form-control" id="coinQuantity" name="coinQuantity" placeholder="Enter bank name">
                     </div>
                     <div class="form-group">
                       <label for="price">Price</label>
-                      <input type="number" class="form-control" id="price" name="price" placeholder="Enter nominal name">
+                      <input type="number" value="<%= bank.price %>" class="form-control" id="price" name="price" placeholder="Enter bank name">
                     </div>
                   </div>
                   <!-- /.card-body -->

@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Category</h1>
+            <h1>Bank</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">category</li>
+              <li class="breadcrumb-item active">bank</li>
             </ol>
           </div>
         </div>
@@ -23,15 +23,28 @@
           <div class="col-12">
             <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Category Form</h3>
+                  <h3 class="card-title">Bank Form</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="/category/edit/<%= category._id %>?_method=PUT" method="post">
+                <form action="/bank/create" method="post">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="name">Category name</label>
-                      <input type="text" value="<%= category.name %>" class="form-control" id="name" name="name" placeholder="Enter category name">
+                      <label>Coin Name</label>
+                      <select class="form-control select2" style="width: 100%;" name="coinName">
+                        <option selected="selected">Pilih - Koin</option>
+                        <option value="Gold">Gold</option>
+                        <option value="Diamond">Diamond</option>
+                        <option value="Jewel">Jewel</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="coinQuantity">Coin Quantity</label>
+                      <input type="number" class="form-control" id="coinQuantity" name="coinQuantity" placeholder="Enter bank name">
+                    </div>
+                    <div class="form-group">
+                      <label for="price">Price</label>
+                      <input type="number" class="form-control" id="price" name="price" placeholder="Enter bank name">
                     </div>
                   </div>
                   <!-- /.card-body -->

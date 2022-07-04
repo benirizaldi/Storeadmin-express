@@ -1,0 +1,32 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Coin Quantity</th>
+      <th>Coin Name</th>
+      <th>Price</th>
+      <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% bank.forEach((item,i) => { i++ %>
+        <tr>
+            <td><%= i++ %> </td>
+          <td><%= item.coinQuantity %> </td>
+          <td><%= item.coinName %> </td>
+          <td><%= item.price %> </td>
+          <td>
+            <a href="/bank/edit/<%= item._id %>" class="btn btn-warning badge">
+              <i class="nav-icon fas fa-pencil-alt"></i>
+              Edit
+            </a>
+            <form action="/bank/delete/<%= item._id %>?_method=DELETE" class="d-inline" method="post">
+              <button type="submit" class="btn btn-danger badge" role="button" onclick="return confirm('Anda Yakin?')">
+                <i class="nav-icon fas fa-trash-alt"></i>
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+    <% }) %>
+  </table>
