@@ -7,6 +7,8 @@ module.exports = {
             const alert = { message: alertMessage, status: alertStatus }
             const nominal = await Nominal.find();
             res.render('admin/nominal/view_nominal', {
+                name: req.session.user.name,
+                title: 'Halaman Nominal',
                 layout: 'partials/layout',
                 nominal,
                 alert
@@ -20,6 +22,8 @@ module.exports = {
     create: async (req, res) => {
         try {
             res.render('admin/nominal/create', {
+                name: req.session.user.name,
+                title: 'Halaman Create Nominal',
                 layout: 'partials/layout',
             });
         } catch (err) {
@@ -48,6 +52,8 @@ module.exports = {
             const { id } = req.params;
             const nominal = await Nominal.findOne({ _id: id });
             res.render('admin/nominal/edit', {
+                name: req.session.user.name,
+                title: 'Halaman Edit Nominal',
                 layout: 'partials/layout',
                 nominal
             })

@@ -1,0 +1,61 @@
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Type Pembayaran</th>
+      <th>Bank</th>
+      <th>Status</th>
+      <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% payment.forEach((item,i) => { i++ %>
+        <tr>
+            <td><%= i++ %> </td>
+          <td><%= item.type %> </td>
+          <td>
+            <% item.banks.forEach(bank => { %>
+              <span class="badge badge-warning">
+                <%= bank.name %> - 
+                <%= bank.nameBank %> - 
+                <%= bank.noRekening %>
+              </span>
+             <% }) %>
+          </td>
+          <td>
+            <form action="/payment/status/<%= item._id %>?_method=PUT" class="d-inline" method="post">
+              <button type="submit" class="btn btn-info badge" role="button" onclick="return confirm('Anda Yakin?')">
+                <i class="nav-icon fas fa-power-off"></i>
+                <% if(item.status == 'Y') { %>
+                    Matikan
+                 <% } else { %>
+                    Hidupkan
+                 <%} %>
+              </button>
+            </form>
+            <% if(item.status == 'Y') { %>
+              <span class="badge badge-success">
+                Aktif
+              </span>
+             <% } else { %>
+              <span class="badge badge-danger">
+                Non-Aktif
+              </span>
+             <%} %>
+            </td>
+          </td>
+          <td>
+            <a href="/payment/edit/<%= item._id %>" class="btn btn-warning badge">
+              <i class="nav-icon fas fa-pencil-alt"></i>
+              Edit
+            </a>
+            <form action="/payment/delete/<%= item._id %>?_method=DELETE" class="d-inline" method="post">
+              <button type="submit" class="btn btn-danger badge" role="button" onclick="return confirm('Anda Yakin?')">
+                <i class="nav-icon fas fa-trash-alt"></i>
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+    <% }) %>
+  </table>

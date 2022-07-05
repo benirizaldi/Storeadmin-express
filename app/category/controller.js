@@ -7,6 +7,8 @@ module.exports = {
             const alert = { message: alertMessage, status: alertStatus }
             const category = await Category.find();
             res.render('admin/category/view_category', {
+                name: req.session.user.name,
+                title: 'Halaman Category',
                 layout: 'partials/layout',
                 category,
                 alert
@@ -20,6 +22,8 @@ module.exports = {
     create: async (req, res) => {
         try {
             res.render('admin/category/create', {
+                name: req.session.user.name,
+                title: 'Halaman Create Category',
                 layout: 'partials/layout',
             });
         } catch (err) {
@@ -48,6 +52,8 @@ module.exports = {
             const { id } = req.params;
             const category = await Category.findOne({ _id: id });
             res.render('admin/category/edit', {
+                name: req.session.user.name,
+                title: 'Halaman Edit Category',
                 layout: 'partials/layout',
                 category
             })

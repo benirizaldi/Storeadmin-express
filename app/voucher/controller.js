@@ -11,8 +11,10 @@ module.exports = {
             const alertStatus = req.flash('alertStatus');
             const alert = { message: alertMessage, status: alertStatus }
             const voucher = await Voucher.find().populate('category').populate('nominal');
-            console.log(voucher);
+
             res.render('admin/voucher/view_index', {
+                name: req.session.user.name,
+                title: 'Halaman Voucher',
                 layout: 'partials/layout',
                 voucher,
                 alert
@@ -28,6 +30,8 @@ module.exports = {
             const category = await Category.find();
             const nominal = await Nominal.find();
             res.render('admin/voucher/create', {
+                name: req.session.user.name,
+                title: 'Halaman Edit Voucher',
                 layout: 'partials/layout',
                 category,
                 nominal
@@ -96,6 +100,8 @@ module.exports = {
             const nominal = await Nominal.find();
             const voucher = await Voucher.findOne({ _id: id });
             res.render('admin/voucher/edit', {
+                name: req.session.user.name,
+                title: 'Halaman Edit Voucher',
                 layout: 'partials/layout',
                 voucher,
                 category,

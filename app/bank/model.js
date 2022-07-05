@@ -12,6 +12,6 @@ const bankName = mongoose.Schema({
         type: String,
         require: [true, 'Rekening Bank must not null']
     },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Bank', bankName);

@@ -7,6 +7,8 @@ module.exports = {
             const alert = { message: alertMessage, status: alertStatus }
             const bank = await Bank.find();
             res.render('admin/bank/view_index', {
+                name: req.session.user.name,
+                title: 'Halaman Bank',
                 layout: 'partials/layout',
                 bank,
                 alert
@@ -20,6 +22,8 @@ module.exports = {
     create: async (req, res) => {
         try {
             res.render('admin/bank/create', {
+                name: req.session.user.name,
+                title: 'Halaman Create Bank',
                 layout: 'partials/layout',
             });
         } catch (err) {
@@ -48,6 +52,8 @@ module.exports = {
             const { id } = req.params;
             const bank = await Bank.findOne({ _id: id });
             res.render('admin/bank/edit', {
+                name: req.session.user.name,
+                title: 'Halaman Edit Bank',
                 layout: 'partials/layout',
                 bank
             })
@@ -60,10 +66,10 @@ module.exports = {
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            const {  name, nameBank, noRekening } = req.body;
+            const { name, nameBank, noRekening } = req.body;
 
             // console.log(id)
-            await Bank.findOneAndUpdate({ _id: id }, {  name, nameBank, noRekening });
+            await Bank.findOneAndUpdate({ _id: id }, { name, nameBank, noRekening });
             req.flash('alertMessage', "Successfully update bank");
             req.flash('alertStatus', "success");
             res.redirect('/bank');
