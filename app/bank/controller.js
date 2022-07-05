@@ -30,8 +30,8 @@ module.exports = {
     },
     store: async (req, res) => {
         try {
-            const { coinQuantity, coinName, price } = req.body;
-            const bank = await Bank({ coinQuantity, coinName, price });
+            const { name, nameBank, noRekening } = req.body;
+            const bank = await Bank({ name, nameBank, noRekening });
             await bank.save();
             req.flash('alertMessage', "Successfully add Bank");
             req.flash('alertStatus', "success");
@@ -60,10 +60,10 @@ module.exports = {
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            const { coinQuantity, coinName, price } = req.body;
+            const {  name, nameBank, noRekening } = req.body;
 
             // console.log(id)
-            await Bank.findOneAndUpdate({ _id: id }, { coinQuantity, coinName, price });
+            await Bank.findOneAndUpdate({ _id: id }, {  name, nameBank, noRekening });
             req.flash('alertMessage', "Successfully update bank");
             req.flash('alertStatus', "success");
             res.redirect('/bank');

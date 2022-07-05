@@ -2,9 +2,9 @@
     <thead>
     <tr>
       <th>No</th>
-      <th>Coin Quantity</th>
-      <th>Coin Name</th>
-      <th>Price</th>
+      <th>Nama Pemilik</th>
+      <th>Nama Bank</th>
+      <th>Nomor Rekening</th>
       <th>Aksi</th>
     </tr>
     </thead>
@@ -12,9 +12,9 @@
     <% bank.forEach((item,i) => { i++ %>
         <tr>
             <td><%= i++ %> </td>
-          <td><%= item.coinQuantity %> </td>
-          <td><%= item.coinName %> </td>
-          <td><%= item.price %> </td>
+          <td><%= item.name %> </td>
+          <td><%= item.nameBank %> </td>
+          <td><%= item.noRekening %> </td>
           <td>
             <a href="/bank/edit/<%= item._id %>" class="btn btn-warning badge">
               <i class="nav-icon fas fa-pencil-alt"></i>

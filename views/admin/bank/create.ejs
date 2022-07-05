@@ -8,8 +8,9 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">bank</li>
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/bank">Bank</a></li>
+              <li class="breadcrumb-item active">Create Bank</li>
             </ol>
           </div>
         </div>
@@ -30,21 +31,16 @@
                 <form action="/bank/create" method="post">
                   <div class="card-body">
                     <div class="form-group">
-                      <label>Coin Name</label>
-                      <select class="form-control select2" style="width: 100%;" name="coinName">
-                        <option selected="selected">Pilih - Koin</option>
-                        <option value="Gold">Gold</option>
-                        <option value="Diamond">Diamond</option>
-                        <option value="Jewel">Jewel</option>
-                      </select>
+                      <label for="coinQuantity">Nama Pemilik</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter card holder name">
                     </div>
                     <div class="form-group">
-                      <label for="coinQuantity">Coin Quantity</label>
-                      <input type="number" class="form-control" id="coinQuantity" name="coinQuantity" placeholder="Enter bank name">
+                      <label for="coinQuantity">Nama Bank</label>
+                      <input type="text" class="form-control" id="nameBank" name="nameBank" placeholder="Enter bank name">
                     </div>
                     <div class="form-group">
-                      <label for="price">Price</label>
-                      <input type="number" class="form-control" id="price" name="price" placeholder="Enter bank name">
+                      <label for="coinQuantity">Nomor Rekening</label>
+                      <input type="text" class="form-control" id="noRekening" name="noRekening" placeholder="Enter card number">
                     </div>
                   </div>
                   <!-- /.card-body -->
