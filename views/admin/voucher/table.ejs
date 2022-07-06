@@ -16,7 +16,7 @@
           <td><%= item.name %> </td>
           <td><%= item.category?.name ?? '-'%> </td>
           <td>
-           <% item.nominal.forEach(nominal => { %>
+           <% item.nominals.forEach(nominal => { %>
             <span class="badge badge-warning">
               <%= nominal.coinName %> 
               <%= nominal.coinQuantity %> 
@@ -39,9 +39,9 @@
               <button type="submit" class="btn btn-info badge" role="button" onclick="return confirm('Anda Yakin?')">
                 <i class="nav-icon fas fa-power-off"></i>
                 <% if(item.status == 'Y') { %>
-                    Matikan
+                    Off
                  <% } else { %>
-                    Hidupkan
+                    On
                  <%} %>
               </button>
             </form>

@@ -1,96 +1,99 @@
-const Bank = require('./model');
+const Transaction = require('./model');
+const Player = require('../player/model');
 module.exports = {
     index: async (req, res) => {
         try {
             const alertMessage = req.flash('alertMessage');
             const alertStatus = req.flash('alertStatus');
             const alert = { message: alertMessage, status: alertStatus }
-            const bank = await Bank.find();
-            res.render('admin/bank/view_index', {
+
+            const transaction = await Transaction.find().populate('player');
+
+            res.render('admin/transaction/view_index', {
                 name: req.session.user.name,
-                title: 'Halaman Bank',
+                title: 'Halaman Transaction',
                 layout: 'partials/layout',
-                bank,
+                transaction,
                 alert
             });
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/bank');
+            res.redirect('/transaction');
         }
     },
     create: async (req, res) => {
         try {
-            res.render('admin/bank/create', {
+            res.render('admin/transaction/create', {
                 name: req.session.user.name,
-                title: 'Halaman Create Bank',
+                title: 'Halaman Create Transaction',
                 layout: 'partials/layout',
             });
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/bank');
+            res.redirect('/transaction');
         }
     },
     store: async (req, res) => {
         try {
-            const { name, bankName, noRekening } = req.body;
-            const bank = await Bank({ name, bankName, noRekening });
-            await bank.save();
-            req.flash('alertMessage', "Successfully add Bank");
+            const { name, nameTransaction, noRekening } = req.body;
+            const transaction = await Transaction({ name, nameTransaction, noRekening });
+            await transaction.save();
+            req.flash('alertMessage', "Successfully add Transaction");
             req.flash('alertStatus', "success");
-            res.redirect('/bank');
+            res.redirect('/transaction');
 
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/bank');
+            res.redirect('/transaction');
         }
     },
     edit: async (req, res) => {
         try {
             const { id } = req.params;
-            const bank = await Bank.findOne({ _id: id });
-            res.render('admin/bank/edit', {
+            const transaction = await Transaction.findOne({ _id: id });
+            res.render('admin/transaction/edit', {
                 name: req.session.user.name,
-                title: 'Halaman Edit Bank',
+                title: 'Halaman Edit Transaction',
                 layout: 'partials/layout',
-                bank
+                transaction
             })
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/bank');
+            res.redirect('/transaction');
         }
     },
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            const { name, bankName, noRekening } = req.body;
+            const { name, nameTransaction, noRekening } = req.body;
 
             // console.log(id)
-            await Bank.findOneAndUpdate({ _id: id }, { name, bankName, noRekening });
-            req.flash('alertMessage', "Successfully update bank");
+            await Transaction.findOneAndUpdate({ _id: id }, { name, nameTransaction, noRekening });
+            req.flash('alertMessage', "Successfully update transaction");
             req.flash('alertStatus', "success");
-            res.redirect('/bank');
+            res.redirect('/transaction');
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/bank');
+            res.redirect('/transaction');
 
         }
     },
     destroy: async (req, res) => {
         try {
             const { id } = req.params;
-            await Bank.findOneAndDelete({ _id: id });
-            req.flash('alertMessage', "Successfully remove bank");
+            await Transaction.findOneAndDelete({ _id: id });
+            req.flash('alertMessage', "Successfully remove transaction");
             req.flash('alertStatus', "success");
-            res.redirect('/bank');
+            res.redirect('/transaction');
         } catch (err) {
             req.flash('alertMessage', `${err.message}`);
             req.flash('alertStatus', 'danger');
-            res.redirect('/bank');
+            res.redirect('/transaction');
 
         }
     },

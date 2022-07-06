@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const userName = mongoose.Schema({
+const playerSchema = mongoose.Schema({
     email: {
         type: String,
         require: [true, 'Email must not null']
@@ -19,12 +19,15 @@ const userName = mongoose.Schema({
     role: {
         type: String,
         enum: ['admin', 'user'],
-        default: 'admin'
+        default: 'user'
     },
     status: {
         type: String,
         enum: ['Y', 'N'],
         default: 'Y'
+    },
+    avatar: {
+        type: String
     },
     phoneNumber: {
         type: String,
@@ -32,4 +35,4 @@ const userName = mongoose.Schema({
     },
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userName);
+module.exports = mongoose.model('Player', playerSchema);
