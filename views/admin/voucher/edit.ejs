@@ -8,8 +8,9 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">voucher</li>
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/voucher">Voucher</a></li>
+              <li class="breadcrumb-item active">edit</li>
             </ol>
           </div>
         </div>
@@ -52,7 +53,7 @@
                       <select class="form-control select2" multiple="multiple" data-placeholder="Pilih Nominal" style="width: 100%;" name="nominal">
                         <% nominal.forEach(nom => { %>
                           <option value="<%= nom._id %>"
-                            <% voucher.nominal.forEach(vc => { %>
+                            <% voucher.nominals.forEach(vc => { %>
                              <% if (nom._id.toString() === vc._id.toString()) { %>
                               selected
                              <% } %>
@@ -68,8 +69,8 @@
                       <div class="mt-4 position-relative">
                         <input type="hidden" class="d-none" value="http://127.0.0.1:3000/uploads/<%= voucher.thumbnail %>" id="oldImg">
                         <img src="http://127.0.0.1:3000/uploads/<%= voucher.thumbnail %>" id="preview" alt="" class="img-fluid w-25">
-                        <button type="button" class="btn btn-danger badge mt-0 d-none" style="position:absolute; top:0;left: 23%;" id="removeImg">
-                          <i class="nav-icon far fa-trash-alt"></i>
+                        <button type="button" class="btn btn-danger rounded-lg badge mt-0 d-none" style="position:absolute; top:0;left: 23%;" id="removeImg">
+                          <i class="nav-icon far fa-times-circle"></i>
                         </button>
                       </div>
           

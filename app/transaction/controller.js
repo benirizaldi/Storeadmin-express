@@ -22,6 +22,23 @@ module.exports = {
             res.redirect('/transaction');
         }
     },
+    updateStatus: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const { status } = req.query;
+            console.log("status:", status);
+            await Transaction.findOneAndUpdate({ _id: id }, { status: status });
+
+            req.flash('alertMessage', "Successfully add Transaction");
+            req.flash('alertStatus', "success");
+            res.redirect('/transaction');
+
+        } catch (err) {
+            req.flash('alertMessage', `${err.message}`);
+            req.flash('alertStatus', 'danger');
+            res.redirect('/transaction');
+        }
+    },
     create: async (req, res) => {
         try {
             res.render('admin/transaction/create', {

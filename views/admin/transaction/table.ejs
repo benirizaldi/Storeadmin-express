@@ -48,18 +48,22 @@
             <%= item.player.name ?? '-' %> 
           </td>
           <td>
-            <form action="/transaction/status/<%= item._id %>?_method=PUT" class="d-inline" method="post">
+           <% if (item.status==='pending') { %>
+            <form action="/transaction/status/<%= item._id %>?status=failed&_method=PUT" class="d-inline" method="post">
               <button type="submit" class="btn btn-danger badge" role="button" onclick="return confirm('Anda Yakin?')">
                 <i class="nav-icon fas fa-times-circle"></i>
                 Tolak
               </button>
             </form>
-            <form action="/transaction/delete/<%= item._id %>?_method=PUT" class="d-inline" method="post">
+            <form action="/transaction/status/<%= item._id %>?status=success&_method=PUT" class="d-inline" method="post">
               <button type="submit" class="btn btn-info badge" role="button" onclick="return confirm('Anda Yakin?')">
                 <i class="nav-icon fas fa-check-circle"></i>
                 Terima
               </button>
             </form>
+           <% } else { %>
+            <i class="nav-icon fas fa-check-circle text-gray"></i>
+            <% } %>
           </td>
         </tr>
     <% }) %>

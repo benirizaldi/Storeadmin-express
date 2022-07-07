@@ -10,7 +10,9 @@ const playerSchema = mongoose.Schema({
     },
     username: {
         type: String,
-        require: [true, 'Username must not null']
+        require: [true, 'Username must not null'],
+        maxlength: [255, 'panjang username harus antara 3 -225 karakter'],
+        minlength: [3, 'panjang username harus antara 3 - 225 karakter']
     },
     password: {
         type: String,
@@ -27,11 +29,16 @@ const playerSchema = mongoose.Schema({
         default: 'Y'
     },
     avatar: {
-        type: String
+        type: String,
     },
+    fileName: { type: String },
     phoneNumber: {
         type: String,
         require: [true, 'Nomor Telepon must not null']
+    },
+    favorite: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     },
 }, { timestamps: true });
 
