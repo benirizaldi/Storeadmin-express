@@ -1,0 +1,4 @@
+MODE=Production
+SERVICE_NAME=StoreGG
+MONGO_URL=mongodb+srv://robert:robert1234@storegg.vtkkyop.mongodb.net/?retryWrites=true&w=majority
+SECRET=SECRET

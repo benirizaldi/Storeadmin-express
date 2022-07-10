@@ -1,5 +1,6 @@
 const Transaction = require('./model');
 const Player = require('../player/model');
+const config = require('../../config');
 module.exports = {
     index: async (req, res) => {
         try {
@@ -14,6 +15,7 @@ module.exports = {
                 title: 'Halaman Transaction',
                 layout: 'partials/layout',
                 transaction,
+                baseUrl: config.baseUrl,
                 alert
             });
         } catch (err) {

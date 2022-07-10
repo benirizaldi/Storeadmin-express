@@ -17,6 +17,7 @@ module.exports = {
                 title: 'Halaman Voucher',
                 layout: 'partials/layout',
                 voucher,
+                baseUrl: config.baseUrl,
                 alert
             });
         } catch (err) {
@@ -104,6 +105,7 @@ module.exports = {
                 title: 'Halaman Edit Voucher',
                 layout: 'partials/layout',
                 voucher,
+                baseUrl: config.baseUrl,
                 category,
                 nominal
             })

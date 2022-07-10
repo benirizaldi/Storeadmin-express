@@ -67,8 +67,8 @@
                       <label for="thumbnail">Thumbnail</label>
                       <input type="file" class="form-control" id="thumbnail" name="thumbnail" placeholder="Upload your image">
                       <div class="mt-4 position-relative">
-                        <input type="hidden" class="d-none" value="http://127.0.0.1:3000/uploads/<%= voucher.thumbnail %>" id="oldImg">
-                        <img src="http://127.0.0.1:3000/uploads/<%= voucher.thumbnail %>" id="preview" alt="" class="img-fluid w-25">
+                        <input type="hidden" class="d-none" value="<%= baseUrl %>/uploads/<%= voucher.thumbnail %>" id="oldImg">
+                        <img src="<%= baseUrl %>/uploads/<%= voucher.thumbnail %>" id="preview" alt="" class="img-fluid w-25">
                         <button type="button" class="btn btn-danger rounded-lg badge mt-0 d-none" style="position:absolute; top:0;left: 23%;" id="removeImg">
                           <i class="nav-icon far fa-times-circle"></i>
                         </button>

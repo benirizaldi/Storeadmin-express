@@ -16,7 +16,7 @@
             <td><%= i++ %> </td>
           <td class="d-flex align-content-center align-items-center">
              <div>
-                  <img width="48px" src="http://localhost:3000/uploads/<%= item.historyVoucherTopup.thumbnail ?? '-' %> " alt="">
+                  <img width="48px" src="<%= baseUrl %>/uploads/<%= item.historyVoucherTopup.thumbnail ?? '-' %> " alt="">
              </div>
               <div class="ml-2">
                 <%= item?.historyVoucherTopup?.gameName %>
