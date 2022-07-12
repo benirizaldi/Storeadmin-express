@@ -36,7 +36,7 @@ module.exports = {
                     .json({ message: "voucher game tidak ditemukan.!" });
             }
             const data = {
-                detal: voucher,
+                detail: voucher,
                 payments: payments
             }
 
