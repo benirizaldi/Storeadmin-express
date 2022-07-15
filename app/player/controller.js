@@ -73,7 +73,7 @@ module.exports = {
                     }
                 })
             })
-            const history = await Transaction.find({ player: req.player_id })
+            const history = await Transaction.find({ player: req.player._id })
                 .populate('category')
                 .sort({ 'udatedAt': -1 })
             res.status(200).json({ data: history, count: count })
