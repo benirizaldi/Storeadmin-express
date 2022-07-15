@@ -236,7 +236,7 @@ module.exports = {
                     player: req.player._id
                 }
             }
-            const history = await Transaction.find(criteria);
+            const history = await Transaction.find(criteria).populate('category');
 
             let total = await Transaction.aggregate([
                 { $match: criteria },
